@@ -64,6 +64,7 @@ const OrderForm = () => {
                 .validate(value)
                 .then(() => {
                     setFormErrs({ ...formErrs, [name]: "" });
+                    console.log(formErrs)
                 })
                 .catch((err) => {
                     setFormErrs({ ...formErrs, [name]: err.errors[0] });

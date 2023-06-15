@@ -36,6 +36,10 @@ const Success = () => {
     return result;
   };
 
+  const handleRedirectHome = () => {
+    history.push("/")
+}
+
   if (!formData || !pizzaBilgileri) {
     history.push("/redirect-order")
   }
@@ -44,7 +48,7 @@ const Success = () => {
   console.log(formData);
   return (
     <div className='success-page'>
-      <h1 style={{ fontFamily: "Barlow", width: "100%", textAlign: "center", fontSize: "3rem", marginTop: "5%" }}>Teknolojik Yemekler</h1>
+      <h1 onClick={handleRedirectHome} style={{ fontFamily: "Barlow", width: "100%", textAlign: "center", fontSize: "3rem", marginTop: "5%" }}>Teknolojik Yemekler</h1>
       <p style={{ color: "#FDC913", fontFamily: "Satisfy", width: "100%", textAlign: "center", fontSize: "2rem", marginBottom: "0%" }}>lezzetin yolda</p>
       <p style={{ fontFamily: "Barlow", width: "40%", textAlign: "center", fontSize: "3rem", marginTop: "0%", borderBottom: "1px solid white", paddingBottom: "2%" }}>SİPARİŞİNİZ ALINDI</p>
       <h4>{pizzaBilgileri && pizzaBilgileri.isim}</h4>

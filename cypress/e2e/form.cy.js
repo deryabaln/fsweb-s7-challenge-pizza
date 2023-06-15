@@ -25,18 +25,6 @@ describe("Form Kontrolü", () => {
         cy.get("[data-cy=submit-button]").should("be.disabled");
     });
 
-    it('Form gönderilebilir', () => {
-        cy.get("[data-cy=orta]").check('M', { force: true });
-        cy.get('[data-cy=hamur]').find('option').contains('İnce Kenar').then(option => {
-            cy.get('[data-cy=hamur]').select(option.val());
-        });
-        cy.get("[data-cy=malzemeler]").check(['Pepperoni', 'Domates'], { force: true });
-        cy.get("[data-cy=note-input]").type('Ekstra sos istiyorum');
-        cy.get("[data-cy=adet]").clear().type('2');
-        cy.get("[data-cy=submit-button]").should("not.be.disabled").click();
-        cy.url().should('include', "http://localhost:3000/order-pizza");
-    });
-
     it('Hamur seçilmeden form gönderilemez', () => {
         cy.get("[data-cy=orta]").check('M', { force: true });
         cy.get("[data-cy=malzemeler]").check(['Pepperoni', 'Domates'], { force: true });
@@ -53,6 +41,18 @@ describe("Form Kontrolü", () => {
         cy.get("[data-cy=note-input]").type('Ekstra sos istiyorum');
         cy.get("[data-cy=adet]").clear().type('2');
         cy.get("[data-cy=submit-button]").should("be.disabled")
+    });
+
+    it('Form gönderilebilir', () => {
+        cy.get("[data-cy=orta]").check('M', { force: true });
+        cy.get('[data-cy=hamur]').find('option').contains('İnce Kenar').then(option => {
+            cy.get('[data-cy=hamur]').select(option.val());
+        });
+        cy.get("[data-cy=malzemeler]").check(['Pepperoni', 'Domates'], { force: true });
+        cy.get("[data-cy=note-input]").type('Ekstra sos istiyorum');
+        cy.get("[data-cy=adet]").clear().type('2');
+        cy.get("[data-cy=submit-button]").should("not.be.disabled").click();
+        cy.url().should('include', "http://localhost:3000/order-pizza");
     });
 });
 
